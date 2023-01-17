@@ -1,0 +1,14 @@
+img {
+    width: 100px;
+    height: 100px;
+}
+
+form {
+    display: inline-block;
+    max-width: 400px;
+    margin-top: 0.75em;
+}
+
+.submit-btn {
+    margin-top: 1em !important;
+}

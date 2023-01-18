@@ -1,7 +1,7 @@
 - Facility APi einbinden und mit dem Station Array mergen
 - Loading Icon nach dem Absenden hinzufügen
 - Neue Seite erstellen mit Fahrpläne
-- Weiterleitung der Seite vollenden
+- head component, title parameter
 
 - Tab-Menu
     - Verbindung suchen

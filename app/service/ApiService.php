@@ -39,5 +39,28 @@ class ApiService {
     
         return json_decode($response, true);
     }
+
+    public static function getStation($input) {
+        return self::callRisApi(
+            array(
+                "endpoint" => "stop-places/by-name",
+                "data" => urlencode($input)
+            ),
+            array(
+                array(
+                    "key" => "sortBy",
+                    "value" => "QUERY_MATCH"
+                ),
+                array(
+                    "key" => "onlyActive",
+                    "value" => "true"
+                ),
+                array(
+                    "key" => "limit",
+                    "value" => "10"
+                )
+            )
+        )["stopPlaces"][0];
+    }
 }
 ?>

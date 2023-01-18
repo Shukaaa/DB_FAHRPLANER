@@ -5,31 +5,15 @@ require_once("util/Utils.php");
 Utils::enable_errors();
 
 // initiaize variables
-$stations = null;
+$station_start = null;
+$station_ziel = null;
 
 // Überprüfe POST
-if (isset($_POST["bahnhof"])) {
+if (isset($_POST["bahnhof_start"]) && isset($_POST["bahnhof_ziel"])) {
     // stations enthält min 1 max 10 Stationen von den möglichen gesuchten Bahnstationen
-    $stations = ApiService::callRisApi(
-        array(
-            "endpoint" => "stop-places/by-name",
-            "data" => urlencode($_POST["bahnhof"])
-        ),
-        array(
-            array(
-                "key" => "sortBy",
-                "value" => "QUERY_MATCH"
-            ),
-            array(
-                "key" => "onlyActive",
-                "value" => "true"
-            ),
-            array(
-                "key" => "limit",
-                "value" => "10"
-            )
-        )
-    )["stopPlaces"];
+    $station_start = ApiService::getStation($_POST["bahnhof_start"]);
+    $station_ziel = ApiService::getStation($_POST["bahnhof_ziel"]);
+    Utils::var_dump_pre($station_start);
 }
 ?>
 
@@ -52,19 +36,20 @@ if (isset($_POST["bahnhof"])) {
         <p>Lassen sie sich einfach und fluffig ihre Fahrten planen mit dem <strong>Fluffigen Fahrplaner</strong>!!!</p>
         <img src="./assets/logo.png" alt="logo"><br>
         <form method="post">
-            <label for="start" class="form-label">Bahnstation</label>
+            <label for="start" class="form-label">Start eingeben</label>
             <div class="input-group flex-nowrap">
-                <input required name="bahnhof" id="start" type="text" class="form-control" aria-describedby="addon-wrapping">
+                <input required name="bahnhof_start" id="start" type="text" class="form-control" aria-describedby="addon-wrapping">
+            </div>
+            <label for="start" class="form-label last">Ziel eingeben</label>
+            <div class="input-group flex-nowrap">
+                <input required name="bahnhof_ziel" id="start" type="text" class="form-control" aria-describedby="addon-wrapping">
             </div>
             <button class="btn btn-outline-dark submit-btn" type="submit">Suchen</button>
-        </form>
-        <h1>Wähle den Bahnhof: <?php  ?></h1>
+        </form><br>
         <?php
-        if ($stations != null) { 
-            foreach ($stations as $station) {
-                //Utils::var_dump_pre($station);
-                echo $station["names"]["DE"]["nameLong"];
-            }
+        if ($station_ziel != null && $station_start != null) {
+            echo $station_start["names"]["DE"]["nameLong"];
+            echo $station_ziel["names"]["DE"]["nameLong"];
         }
         ?>
     </main>

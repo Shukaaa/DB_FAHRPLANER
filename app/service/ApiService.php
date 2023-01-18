@@ -5,7 +5,29 @@ class ApiService {
     public static $api_key = "5292225921defce1353f6804189d8505";
 
     /**
-     * @description Die DB Ris-Api ansprechen und Response Daten verarbeiten
+     * @description Sendet eine Anfrage mit der übergebenen URL
+     * @param string $url URL die angesprochen werden soll
+     * @return array API-Response
+     */
+    private static function sendRequest($url, $response_type) {
+        $ch = curl_init($url);
+        
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Accept: ' . $response_type,
+            'DB-Client-Id: ' . self::$client_id,
+            'DB-Api-Key: ' . self::$api_key
+        ));
+    
+        $response = curl_exec($ch);
+    
+        curl_close($ch);
+    
+        return json_decode($response, true);
+    }
+
+    /**
+     * @description Baut die URL für die RIS:API und sendet eine Request
      * @param array $request Der Array muss endpoint und data enthalten
      * @param array $additional_data [OPTIONAL] Multidimensionaler Array der Information zu additionellen Einstellungen enthält, z.b. length=10
      * @return array API-Response
@@ -24,29 +46,27 @@ class ApiService {
             $url .= $additional_data_string;
         }
 
-        $ch = curl_init($url);
-        
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Accept: application/vnd.de.db.ris+json ',
-            'DB-Client-Id: ' . self::$client_id,
-            'DB-Api-Key: ' . self::$api_key
-        ));
-    
-        $response = curl_exec($ch);
-    
-        curl_close($ch);
-    
-        return json_decode($response, true);
+        return self::sendRequest($url, "application/vnd.de.db.ris+json");
     }
 
     /**
-     * @description Anhand eines Inputs die Station ermitten und daten ausgeben
-     * @param string $input String für den Query (suchen) der Station
+     * @description Baut die URL für die FaSta API und sendet eine Request
+     * @param array $request Der Array muss endpoint und data enthalten
+     * @return array API-Response
+     */
+    public static function callFastaApi($request) {
+        $url = 'https://apis.deutschebahn.com/db-api-marketplace/apis/fasta/v2/' . $request['endpoint'] . "/" . $request['data'];
+
+        return self::sendRequest($url, "application/json");
+    }
+
+    /**
+     * @description Anhand eines Inputs die Station ermitten und daten ausgeben (Es werden außerdem noch Facitily-Daten mit eigebunden von einer anderen API)
+     * @param string $input String für den Query der Station
      * @return array API-Response
      */
     public static function getStation($input) {
-        return self::callRisApi(
+        $stop_place = self::callRisApi(
             array(
                 "endpoint" => "stop-places/by-name",
                 "data" => urlencode($input)
@@ -62,10 +82,19 @@ class ApiService {
                 ),
                 array(
                     "key" => "limit",
-                    "value" => "10"
+                    "value" => "1"
                 )
             )
         )["stopPlaces"][0];
+
+        $station = self::callRisApi(
+            array(
+                "endpoint" => "stations",
+                "data" => urlencode($stop_place["stationID"])
+            )
+        );
+
+        return array_merge($stop_place, $station);
     }
 }
 ?>

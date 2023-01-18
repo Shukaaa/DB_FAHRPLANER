@@ -20,5 +20,14 @@ class Utils {
         var_dump($var);
         echo '</pre>';
     }
+
+    /**
+     * @description Erstellt ein Link zur Weiterleitung basierend auf der derzeitigen URL
+     * @param string $page Seitenname
+     * @return string URL
+     */
+    public static function getRedirectUrl($page) {
+        return "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . $page . ".php";
+    }
 }
 ?>

@@ -4,16 +4,9 @@ require_once("util/Utils.php");
 
 Utils::enable_errors();
 
-// initiaize variables
-$station_start = null;
-$station_ziel = null;
-
-// Überprüfe POST von der Form
 if (isset($_POST["bahnhof_start"]) && isset($_POST["bahnhof_ziel"])) {
-    // stationen suchen mit dem input der Form
-    $station_start = ApiService::getStation($_POST["bahnhof_start"]);
-    $station_ziel = ApiService::getStation($_POST["bahnhof_ziel"]);
-    Utils::var_dump_pre($station_start);
+    header("Location: http://www.example.com/another-page.php");
+    exit();
 }
 ?>
 
@@ -71,15 +64,6 @@ if (isset($_POST["bahnhof_start"]) && isset($_POST["bahnhof_ziel"])) {
                 <button class="btn btn-outline-dark submit-btn" type="submit">Verbindung Suchen</button>
             </form>
         </section>
-        <?php
-        if ($station_ziel != null && $station_start != null) {
-            echo $station_start["names"]["DE"]["name"];
-            echo $station_ziel["names"]["DE"]["name"];
-        }
-        ?>
     </main>
- 
-  
-</div>
 </body>
 </html>

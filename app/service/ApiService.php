@@ -7,6 +7,7 @@ class ApiService {
     /**
      * @description Sendet eine Anfrage mit der übergebenen URL
      * @param string $url URL die angesprochen werden soll
+     * @param string $response_type Header Information des Return Types
      * @return array API-Response
      */
     private static function sendRequest($url, $response_type) {

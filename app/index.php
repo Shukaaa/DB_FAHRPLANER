@@ -44,6 +44,24 @@ if (isset($_POST["bahnhof_start"]) && isset($_POST["bahnhof_ziel"])) {
             <div class="input-group flex-nowrap">
                 <input required name="bahnhof_ziel" id="start" type="text" class="form-control" aria-describedby="addon-wrapping">
             </div>
+            <label for="start" class="form-label last">Zeit angeben</label>
+            <div class="input-group flex-nowrap">
+                <input required name="date" id="start" type="datetime-local" class="form-control" aria-describedby="addon-wrapping">
+            </div>
+            <div class="flex">
+                <div class="input-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="AbAn" value="An" checked>
+                        <label class="form-check-label" for="flexCheckDisabled">Ankunft</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="AbAn" value="Ab">
+                        <label class="form-check-label" for="flexCheckDisabled">Abfahrt</label>
+                    </div>
+                </div>
+            </div>
             <button class="btn btn-outline-dark submit-btn" type="submit">Suchen</button>
         </form><br>
         <?php

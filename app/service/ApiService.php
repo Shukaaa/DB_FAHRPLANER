@@ -40,6 +40,11 @@ class ApiService {
         return json_decode($response, true);
     }
 
+    /**
+     * @description Anhand eines Inputs die Station ermitten und daten ausgeben
+     * @param string $input String für den Query (suchen) der Station
+     * @return array API-Response
+     */
     public static function getStation($input) {
         return self::callRisApi(
             array(
@@ -49,7 +54,7 @@ class ApiService {
             array(
                 array(
                     "key" => "sortBy",
-                    "value" => "QUERY_MATCH"
+                    "value" => "RELEVANCE"
                 ),
                 array(
                     "key" => "onlyActive",

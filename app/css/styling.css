@@ -12,3 +12,11 @@ form {
 .submit-btn {
     margin-top: 1em !important;
 }
+
+label {
+    margin: 0 !important;
+}
+
+.last {
+    padding-top: 1em;
+}

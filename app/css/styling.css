@@ -24,3 +24,12 @@ label {
 .flex {
     display: flex;
 }
+
+.center-hv {
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

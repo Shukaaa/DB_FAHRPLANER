@@ -3,9 +3,10 @@ class Components
 {
     /**
      * @description Beinhält HTML Head Informationen
+     * @param string $title Seitenname
      * @return string HTML-String
      */
-    public static function head() { 
+    public static function head($title) { 
         return '<meta   charset="UTF-8">
         <meta   http-equiv="X-UA-Compatible" content="IE=edge">
         <meta   name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@ class Components
                 integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
                 crossorigin="anonymous">
 
-        <title>Fluffiger Fahrplaner</title>';
+        <title>Fahrplaner | ' . $title . '</title>';
     }
 }
 ?>

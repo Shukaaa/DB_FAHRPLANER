@@ -1,16 +1,20 @@
 <?php
+// imports
 require_once("service/ApiService.php");
 require_once("util/Utils.php");
 require_once("components/Components.php");
 
 Utils::enable_errors();
 
+// Überprüfe ob der POST / die Form abgesendet wurde
 if (isset($_POST["bahnhof_start"]) && isset($_POST["bahnhof_ziel"])) {
     session_start();
 
+    // schreibe die Bahnhof Inputs in die Session um später auf diese Daten zugreifen zu können (route.php)
     $_SESSION["bahnhof_start"] = $_POST["bahnhof_start"];
     $_SESSION["bahnhof_ziel"] = $_POST["bahnhof_ziel"];
 
+    // Weiterleitung nach route.php
     header("Location: " . Utils::getRedirectUrl("route"));
     exit();
 }
@@ -19,13 +23,13 @@ if (isset($_POST["bahnhof_start"]) && isset($_POST["bahnhof_ziel"])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php echo Components::head() ?>
+    <?php echo Components::head("Home") ?>
 </head>
 <body>
     <main class="center-hv">
         <section>
             <h1>Fluffiger Fahrplaner</h1>
-            <p>Lassen sie sich einfach und fluffig ihre Fahrten planen mit dem <strong>Fluffigen Fahrplaner</strong>!!!</p>
+            <p>Lassen sie sich einfach und fluffig ihre Fahrten planen oder sich Bahnhofdetails und Fahrpläne anzeigen lassen mit dem <strong>Fluffigen Fahrplaner</strong>!!!</p>
             <img src="./assets/logo.png" alt="logo"><br>
         </section>
         <section>

@@ -1,5 +1,4 @@
 <?php
-
 class ApiService {
     public static $client_id = "4d211985a4a645cfd9357761e9e34099";
     public static $api_key = "5292225921defce1353f6804189d8505";
@@ -62,7 +61,7 @@ class ApiService {
     }
 
     /**
-     * @description Anhand eines Inputs die Station ermitten und daten ausgeben (Es werden außerdem noch Facitily-Daten mit eigebunden von einer anderen API)
+     * @description Anhand eines Inputs die Station ermitteln und daten ausgeben (Es werden außerdem noch Facitily-Daten mit eigebunden von einer anderen API)
      * @param string $input String für den Query der Station
      * @return array API-Response
      */
@@ -95,7 +94,17 @@ class ApiService {
             )
         );
 
-        return array_merge($stop_place, $station);
+        $facility_details = self::callFastaApi(
+            array(
+                "endpoint" => "stations",
+                "data" => urlencode($stop_place["stationID"])
+            )
+        )["facilities"];
+
+        $merged_array = array_merge($stop_place, $station);
+        $merged_array["facilities"] = $facility_details;
+
+        return $merged_array;
     }
 }
 ?>

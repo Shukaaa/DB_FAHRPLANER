@@ -1,8 +1,6 @@
-- Facility APi einbinden und mit dem Station Array mergen
-- Loading Icon nach dem Absenden hinzufügen
-- Neue Seite erstellen mit Fahrpläne
-- head component, title parameter
+- ? Loading Icon nach dem Absenden hinzufügen
+- Neue Seite erstellen für Bahnhof-Details & Fahrpläne anzeigen lassen
 
 - Tab-Menu
     - Verbindung suchen
-    - Bahnhof-Details anzeigen
+    - Bahnhof-Details & Fahrpläne anzeigen

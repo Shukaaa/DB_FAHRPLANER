@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
 @import url("./styling.css");
 
 * {
@@ -6,10 +7,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Secular One', sans-serif;
-}
-
-strong {
-    color: var(--main-color);
 }
 
 :root {

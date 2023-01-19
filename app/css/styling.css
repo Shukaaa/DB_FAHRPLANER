@@ -5,12 +5,17 @@ strong {
 img {
     width: 100px;
     height: 100px;
+    margin: 0.5em 0;
 }
 
 form {
     display: inline-block;
     max-width: 400px;
     margin-top: 0.75em;
+}
+
+p {
+    margin: 0 !important;
 }
 
 .submit-btn {
@@ -40,4 +45,29 @@ label {
 
 section {
     max-width: 600px;
+}
+
+.section {
+    height: 350px;
+}
+
+.nav-link {
+    color: black !important;
+}
+
+.active {
+    color: var(--main-color) !important;
+}
+
+.hide {
+    display: none;
+}
+
+.nav-link {
+    cursor: pointer !important;
+}
+
+.left {
+    margin-left: -3em !important;
+    margin-top: 0.1em !important;
 }

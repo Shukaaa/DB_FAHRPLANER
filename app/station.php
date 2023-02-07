@@ -22,6 +22,8 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
     header("Location: " . Utils::getRedirectUrl("index"));
     exit();
 }
+
+Utils::var_dump_pre($station);
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +35,7 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
     <main class="center-hv">
         <?php
         if ($station != null) {
-            echo $station["names"]["DE"]["name"];
-            echo $fahrplan;
+            
         }
         ?>
     </main>

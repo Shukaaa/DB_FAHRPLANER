@@ -93,6 +93,8 @@ class ApiService {
             return null;
         }
 
+        $stop_place = $stop_place["stopPlaces"][0];
+
         $station = self::callRisApi(
             array(
                 "endpoint" => "stations",

@@ -44,27 +44,35 @@ label {
 }
 
 section {
-    max-width: 600px;
+    max-width: 69vw;
 }
 
 .section {
     height: 350px;
+    border: #d7d7d7 1px solid;
+    border-top: none;
+    border-left: var(--main-color) 2px solid;
+    box-shadow: 5px 5px 15px -11px rgba(0,0,0,0.5);
+    background-color: #f8f7f7;
 }
 
 .nav-link {
     color: black !important;
+    cursor: pointer !important;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
 }
 
 .active {
     color: var(--main-color) !important;
+    background-color: #f0f0f0 !important;
 }
 
 .hide {
     display: none;
-}
-
-.nav-link {
-    cursor: pointer !important;
 }
 
 .left {

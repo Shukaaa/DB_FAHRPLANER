@@ -1,4 +1,5 @@
 <?php
+require_once("./service/ErrorService.php");
 class ApiService {
     public static $client_id = "4d211985a4a645cfd9357761e9e34099";
     public static $api_key = "5292225921defce1353f6804189d8505";
@@ -63,7 +64,7 @@ class ApiService {
     /**
      * @description Anhand eines Inputs die Station ermitteln und daten ausgeben (Es werden außerdem noch Facitily-Daten mit eigebunden von einer anderen API)
      * @param string $input String für den Query der Station
-     * @return array API-Response
+     * @return array|null API-Response
      */
     public static function getStation($input) {
         $stop_place = self::callRisApi(
@@ -88,7 +89,8 @@ class ApiService {
         );
 
         if ($stop_place == null) {
-            return array();
+            ErrorService::triggerError("API-Verbindung fehlgeschlagen", "Die Verbindung zu den DB-APIs funktioniert nicht :(");
+            return null;
         }
 
         $station = self::callRisApi(

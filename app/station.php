@@ -17,7 +17,6 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
     // API calls mit den Namen der Bahnhöfe machen
     $station = ApiService::getStation($_SESSION["bahnhof"]);
     $fahrplan = $_SESSION["fahrplan"];
-    Utils::var_dump_pre($station);
 } else {
     // Zurück zur index.php
     header("Location: " . Utils::getRedirectUrl("index"));

@@ -22,7 +22,7 @@ if (isset($_POST["bahnhof_start"]) && isset($_POST["bahnhof_ziel"])) {
 if (isset($_POST["bahnhof"])) {
     session_start();
 
-    // schreibe die Bahnhof Inputs in die Session um später auf diese Daten zugreifen zu können (route.php)
+    // schreibe die Bahnhof Inputs in die Session um später auf diese Daten zugreifen zu können (station.php)
     $_SESSION["bahnhof"] = $_POST["bahnhof"];
     if (isset($_POST["fahrplan"])) {
         $_SESSION["fahrplan"] = true;
@@ -30,7 +30,7 @@ if (isset($_POST["bahnhof"])) {
         $_SESSION["fahrplan"] = false;
     }  
 
-    // Weiterleitung nach route.php
+    // Weiterleitung nach station.php
     header("Location: " . Utils::getRedirectUrl("station"));
     exit();
 }

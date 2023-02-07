@@ -105,7 +105,7 @@ if (isset($_POST["bahnhof"])) {
             </form>
         </section>
         <section id="section-projektinfo" class="hide section">
-            <h5>Projekt von Lucas Bernard und Connor Nagy</h5>
+            <h5 class="mt">Projekt von <strong>Lucas Bernard</strong> und <strong>Connor Nagy</strong></h5>
             <p>Das Programm ist größtenteils von Lucas geschrieben und die Dokumentation ist von Connor</p>
         </section>
     </main>

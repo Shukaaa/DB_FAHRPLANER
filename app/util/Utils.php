@@ -27,7 +27,11 @@ class Utils {
      * @return string URL
      */
     public static function getRedirectUrl($page) {
-        return "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . $page . ".php";
+        if (isset($_SERVER["HTTPS"])) {
+            return "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . $page . ".php";
+        } else {
+            return "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . $page . ".php";
+        }
     }
 }
 ?>

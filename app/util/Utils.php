@@ -33,5 +33,14 @@ class Utils {
             return "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . $page . ".php";
         }
     }
+
+    /**
+     * @description Shorthand für console.log
+     * @param mixed $log Datensatz oder Nachricht die geloggt werden soll
+     * @return void
+     */
+    public static function logger($log) {
+        echo "<script>console.log(" . json_encode($log) . ")</script>";
+    }
 }
 ?>

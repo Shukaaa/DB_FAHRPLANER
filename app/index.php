@@ -41,6 +41,7 @@ if (isset($_POST["bahnhof"])) {
 <head>
     <?php echo Components::head("Home") ?>
     <script src="./js/tabsTrigger.js" defer></script>
+    <script src="./js/checkboxChangeForm.js" defer></script>
 </head>
 <body>
     <main class="center-hv">
@@ -64,15 +65,15 @@ if (isset($_POST["bahnhof"])) {
             <form method="post">
                 <label for="start" class="form-label">Start eingeben</label>
                 <div class="input-group flex-nowrap">
-                    <input required name="bahnhof_start" id="start" type="text" class="form-control" aria-describedby="addon-wrapping">
+                    <input required name="bahnhof_start" type="text" class="form-control" aria-describedby="addon-wrapping">
                 </div>
                 <label for="start" class="form-label last">Ziel eingeben</label>
                 <div class="input-group flex-nowrap">
-                    <input required name="bahnhof_ziel" id="start" type="text" class="form-control" aria-describedby="addon-wrapping">
+                    <input required name="bahnhof_ziel" type="text" class="form-control" aria-describedby="addon-wrapping">
                 </div>
                 <label for="start" class="form-label last">Zeit angeben</label>
                 <div class="input-group flex-nowrap">
-                    <input required name="date" id="start" type="datetime-local" class="form-control" aria-describedby="addon-wrapping">
+                    <input required name="date" type="datetime-local" class="form-control" aria-describedby="addon-wrapping">
                 </div>
                 <div class="flex">
                     <div class="input-group">
@@ -98,8 +99,27 @@ if (isset($_POST["bahnhof"])) {
                     <input required name="bahnhof" type="text" class="form-control" aria-describedby="addon-wrapping">
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="fahrplan" value="true" id="flexCheckDefault">
+                    <input onchange="checkForCheckbox()" class="form-check-input" type="checkbox" name="fahrplan" value="true" id="fahrplanCheckbox">
                     <label class="form-check-label left" for="flexCheckDefault">Fahrplan ausgeben</label>
+                </div>
+                <div id="fahrplanOnlyForm" style="display: none;">
+                    <div class="input-group flex-nowrap">
+                        <input name="date" id="fahrplanDate" type="datetime-local" class="form-control" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="flex">
+                    <div class="input-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="AbAn" value="An" checked>
+                            <label class="form-check-label" for="flexCheckDisabled">Ankunft</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="AbAn" value="Ab">
+                            <label class="form-check-label" for="flexCheckDisabled">Abfahrt</label>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <button class="btn btn-outline-dark submit-btn" type="submit">Informationen anzeigen</button>
             </form>

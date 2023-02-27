@@ -1,2 +1,5 @@
+- fahrplan api verbindung herstellen
+    - daten verarbeiten
+    - nur zeitangabe vom input feld verwenden
 - ? Loading Icon nach dem Absenden hinzufügen
 - Neue Seite erstellen für Bahnhof-Details & Fahrpläne anzeigen lassen

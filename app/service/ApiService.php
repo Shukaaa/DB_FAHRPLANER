@@ -21,10 +21,14 @@ class ApiService {
         ));
     
         $response = curl_exec($ch);
-    
+
         curl_close($ch);
-    
-        return json_decode($response, true);
+
+        if ($response_type == "application/xml") {
+            return simplexml_load_string($response);
+        } else {
+            return json_decode($response, true);
+        }
     }
 
     /**
@@ -124,14 +128,12 @@ class ApiService {
         $timestable_data = self::callTimestableApi(
             array(
                 "evaNo" => urlencode($stop_place["evaNumber"]),
-                "date" => substr(date("Y"), 2) . date("md"),
+                "date" => substr(date("Ymd"), 2),
                 "hour" => $hour
             )
         );
 
         Utils::logger($timestable_data);
-        Utils::logger($hour);
-        Utils::logger(substr(date("Y"), 2) . date("md"));
 
         $merged_array = array_merge($stop_place, $station);
         $merged_array["facilities"] = $facility_details;

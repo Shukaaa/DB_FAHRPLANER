@@ -35,7 +35,9 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
         if ($station != null) {
             if (array_key_exists("fahrplan", $station)) {
                 foreach ($station["fahrplan"]->s as $s) {
-                    echo "<p>" . $s["id"] . "</p><br>";
+                    $ars = explode("|", $s->ar["ppth"]);
+                    $dps = explode("|", $s->dp["ppth"]);
+                    echo "<div class='routes'><p>From <strong>" . $ars[0] . "</strong> to <strong>" . end($dps) . "</strong></p></div>";
                 }
             }
         }

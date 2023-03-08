@@ -95,3 +95,10 @@ section {
     margin-right: auto;
     margin-top: 1em;
 }
+
+.routes {
+    background-color: #fff;
+    border: 1px solid #d7d7d7;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}

@@ -22,8 +22,6 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
     header("Location: " . Utils::getRedirectUrl("index"));
     exit();
 }
-
-Utils::var_dump_pre($station);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +33,11 @@ Utils::var_dump_pre($station);
     <main class="center-hv">
         <?php
         if ($station != null) {
-            
+            if (array_key_exists("fahrplan", $station)) {
+                foreach ($station["fahrplan"]->s as $s) {
+                    echo "<p>" . $s["id"] . "</p><br>";
+                }
+            }
         }
         ?>
     </main>

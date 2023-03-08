@@ -28,7 +28,8 @@ if (isset($_POST["bahnhof"])) {
         $_SESSION["fahrplan"] = true;
     } else {
         $_SESSION["fahrplan"] = false;
-    }  
+    }
+    $_SESSION["fahrplan_date"] = $_POST["fahrplanDate"];
 
     // Weiterleitung nach station.php
     header("Location: " . Utils::getRedirectUrl("station"));
@@ -104,20 +105,7 @@ if (isset($_POST["bahnhof"])) {
                 </div>
                 <div id="fahrplanOnlyForm" style="display: none;">
                     <div class="input-group flex-nowrap">
-                        <input name="date" id="fahrplanDate" type="datetime-local" class="form-control" aria-describedby="addon-wrapping">
-                    </div>
-                    <div class="flex">
-                    <div class="input-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="AbAn" value="An" checked>
-                            <label class="form-check-label" for="flexCheckDisabled">Ankunft</label>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="AbAn" value="Ab">
-                            <label class="form-check-label" for="flexCheckDisabled">Abfahrt</label>
-                        </div>
+                        <input name="fahrplanDate" id="fahrplanDate" type="datetime-local" class="form-control" aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 </div>

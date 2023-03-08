@@ -8,7 +8,7 @@ class ApiService {
      * @description Sendet eine Anfrage mit der übergebenen URL
      * @param string $url URL die angesprochen werden soll
      * @param string $response_type Header Information des Return Types
-     * @return array API-Response
+     * @return array|SimpleXMLElement API-Response
      */
     private static function sendRequest($url, $response_type) {
         $ch = curl_init($url);
@@ -68,21 +68,22 @@ class ApiService {
     /**
      * @description Baut die URL für die Timestable API und sendet eine Request
      * @param array $request Der Array muss die evaNumber und datumangaben enthalten
-     * @return array API-Response
+     * @return SimpleXMLElement API-Response
      */
     public static function callTimestableApi($request) {
         $url = "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/" . $request["evaNo"] . "/" . $request["date"] . "/" . $request["hour"];
 
-        Utils::logger($url);
         return self::sendRequest($url, "application/xml");
     }
 
     /**
      * @description Anhand eines Inputs die Station ermitteln und daten ausgeben (Es werden außerdem noch Facitily-Daten mit eigebunden von einer anderen API)
      * @param string $input String für den Query der Station
+     * @param boolean $getFahrplan soll der Fahrplan ausgeführt werden?
+     * @param string $hour stundenzahl
      * @return array|null API-Response
      */
-    public static function getStation($input, $hour = "12") {
+    public static function getStation($input, $getFahrplan, $hour = "12") {
         $stop_place = self::callRisApi(
             array(
                 "endpoint" => "stop-places/by-name",
@@ -125,18 +126,20 @@ class ApiService {
             )
         )["facilities"];
 
-        $timestable_data = self::callTimestableApi(
-            array(
-                "evaNo" => urlencode($stop_place["evaNumber"]),
-                "date" => substr(date("Ymd"), 2),
-                "hour" => $hour
-            )
-        );
-
-        Utils::logger($timestable_data);
-
         $merged_array = array_merge($stop_place, $station);
         $merged_array["facilities"] = $facility_details;
+
+        if ($getFahrplan) {
+            $timestable_data = self::callTimestableApi(
+                array(
+                    "evaNo" => urlencode($stop_place["evaNumber"]),
+                    "date" => substr(date("Ymd"), 2),
+                    "hour" => $hour
+                )
+            );
+
+            $merged_array["fahrplan"] = $timestable_data;
+        }
 
         return $merged_array;
     }

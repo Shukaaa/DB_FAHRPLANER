@@ -15,8 +15,8 @@ session_start();
 // Überprüfe ob Session Variablen gesetzt wurden
 if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
     // API calls mit den Namen der Bahnhöfe machen
-    $station = ApiService::getStation($_SESSION["bahnhof"]);
-    $fahrplan = $_SESSION["fahrplan"];
+    $station = ApiService::getStation($_SESSION["bahnhof"], $_SESSION["fahrplan"], date("h", strtotime($_SESSION["fahrplan_date"])));
+    Utils::logger($station);
 } else {
     // Zurück zur index.php
     header("Location: " . Utils::getRedirectUrl("index"));

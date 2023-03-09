@@ -16,7 +16,7 @@ session_start();
 if (isset($_SESSION["bahnhof_ziel"]) && isset($_SESSION["bahnhof_start"])) {
     // API calls mit den Namen der Bahnhöfe machen
     $station_start = ApiService::getStation($_SESSION["bahnhof_start"], true);
-    $station_ziel = ApiService::getStation($_SESSION["bahnhof_ziel"], false);
+    $station_ziel = ApiService::getStation($_SESSION["bahnhof_ziel"], true);
 } else {
     // Zurück zur index.php
     header("Location: " . Utils::getRedirectUrl("index"));

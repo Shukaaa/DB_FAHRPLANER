@@ -43,6 +43,12 @@ label {
     transform: translate(-50%, -50%);
 }
 
+.center-minor {
+    margin: auto;
+    width: 90vw;
+    text-align: center;
+}
+
 section {
     max-width: 69vw;
 }
@@ -96,9 +102,36 @@ section {
     margin-top: 1em;
 }
 
-.routes {
-    background-color: #fff;
+.route {
+    background-color: #eee;
     border: 1px solid #d7d7d7;
+    width: 400px;
     padding: 0.5em;
-    margin-bottom: 0.5em;
+}
+
+.route-details {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.routes {
+    height: 80vh;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.big-dick {
+    font-size: 16px;
+}
+
+.meow {
+    margin-top: 0.25em;
 }

@@ -1,4 +1,2 @@
-- fahrplan api verbindung herstellen
-    - daten verarbeiten
-    - nur zeitangabe vom input feld verwenden
-- ? Loading Icon nach dem Absenden hinzufügen
+- station.php
+    - Facilities anzeigen

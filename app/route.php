@@ -18,7 +18,7 @@ if (isset($_SESSION["bahnhof_ziel"]) && isset($_SESSION["bahnhof_start"])) {
     $station_start = ApiService::getStation($_SESSION["bahnhof_start"], true);
     $station_ziel = ApiService::getStation($_SESSION["bahnhof_ziel"], true);
 } else {
-    // Zurück zur index.php
+    // Zurück zur index.php falls keine Eingaben abgefangen werden konnten
     header("Location: " . Utils::getRedirectUrl("index"));
     exit();
 }

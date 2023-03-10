@@ -1,4 +1,6 @@
 <?php
+require_once("util/Utils.php");
+
 class Components
 {
     /**
@@ -18,7 +20,35 @@ class Components
                 integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
                 crossorigin="anonymous">
 
+        <script src="https://kit.fontawesome.com/5bf597b54b.js" crossorigin="anonymous"></script>
+
         <title>Fahrplaner | ' . $title . '</title>';
+    }
+
+    /**
+     * @description Beinhält HTML-Code für das Breadcrump-Menu
+     * @param boolean $home Check ob es der Breadcump für die Startseite ist
+     * @param string $current_page Seitenname
+     * @return string HTML-String
+     */
+    public static function breadcrump($home, $current_page = "") {
+        if ($home) {
+            return "
+            <div class='breadcrump'>
+                <span>
+                    <i class='fa-solid fa-house'></i> /
+                </span>
+            </div>
+            ";
+        } else {
+            return "
+            <div class='breadcrump'>
+                <span>
+                    <a href='" . Utils::getRedirectUrl("index") . "'><i class='fa-solid fa-house'></i></a> / " . $current_page . "
+                </span>
+            </div>
+            ";
+        }
     }
 }
 ?>

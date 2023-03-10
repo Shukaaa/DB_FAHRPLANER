@@ -45,6 +45,7 @@ if (isset($_POST["bahnhof"])) {
     <script src="./js/checkboxChangeForm.js" defer></script>
 </head>
 <body>
+    <?php echo Components::breadcrump(true) ?>  
     <main class="center-hv">
         <section>
             <h1>Fluffiger Fahrplaner</h1>
@@ -114,7 +115,7 @@ if (isset($_POST["bahnhof"])) {
         </section>
         <section id="section-projektinfo" class="hide section">
             <h5 class="mt">Projekt von <strong>Lucas Bernard</strong>, <strong>Connor Nagy</strong> und <strong>Linus Hochbaum</strong></h5>
-            <p>Das Programm ist von Lucas und Linus geschrieben und die Dokumentation ist von Connor</p>
+            <p>Das Programm ist von Lucas geschrieben und wurde von Linus (Code-Reviewer) überprüft und verbessert. Die Dokumentation ist von Connor geschrieben.</p>
         </section>
     </main>
 </body>

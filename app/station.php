@@ -27,9 +27,10 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php echo Components::head("Verbindung") ?>
+    <?php echo Components::head("Stationeninformation") ?>
 </head>
 <body>
+    <?php echo Components::breadcrump(false, "Stationeninformation") ?>
     <main class="center-minor">
         <h1 class="meow"><u><?php echo $station["names"]["DE"]["name"] ?></u></h1>
             <?php
@@ -39,10 +40,29 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
                     <li>" . $station['address']['street'] . ' ' . $station['address']['houseNumber'] . "</li>
                     <li>" . $station['address']['city'] . ' ' . $station['address']['postalCode'] . "</li>
                 </ul>
-                <iframe width='500' height='300' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://www.openstreetmap.org/export/embed.html?bbox=" . $station["position"]["longitude"] . "%2C" . $station["position"]["latitude"] . "%2C" . $station["position"]["longitude"] . "%2C" . $station["position"]["latitude"] . "&amp;layer=mapnik'></iframe>";
+                <iframe width='500' 
+                        height='300' 
+                        frameborder='0' 
+                        scrolling='no' 
+                        marginheight='0' 
+                        marginwidth='0' 
+                        src='https://www.openstreetmap.org/export/embed.html?bbox=" . $station["position"]["longitude"] . "%2C" . $station["position"]["latitude"] . "%2C" . $station["position"]["longitude"] . "%2C" . $station["position"]["latitude"] . "&amp;layer=mapnik'>
+                </iframe>";
 
-
-                if (array_key_exists("facilities", $station))
+                if (array_key_exists("facilities", $station)) {
+                    echo "<h5 class='meow'><u>Einrichtungen</u></h5>";
+                    foreach ($station["facilities"] as $facility) {
+                        Utils::logger($facility);
+                        echo "
+                        <div class='facility'>
+                            <p class='big-dick'><strong>" . ucfirst(strtolower($facility["type"])) . "</strong> " . $facility["description"] . "</p>
+                            <ul class='route-details'>
+                                <li>Status: " . ucfirst(strtolower($facility["state"])) . "</li>
+                            </ul>
+                        </div>
+                        ";
+                    }
+                }
 
                 if (array_key_exists("fahrplan", $station)) {
                     echo "<h5 class='meow'><u>Fahrplan</u></h5><div class='routes'>";
@@ -59,11 +79,10 @@ if (isset($_SESSION["bahnhof"]) && isset($_SESSION["fahrplan"])) {
                             continue;
                         }
 
-                        if (count($ars) <= 1) {
+                        if (count($ars) == 1 && $ars[0] == '') {
                             $ars[0] = $station["names"]["DE"]["name"];
                             $s->ar["pp"] = $s->dp["pp"];
                         }
-
                         
                         echo "  <div class='route'>
                                     <p class='big-dick'>Von <strong>" . $ars[0] . "</strong> nach <strong>" . end($dps) . "</strong></p>

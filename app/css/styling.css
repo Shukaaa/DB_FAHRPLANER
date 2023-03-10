@@ -116,7 +116,7 @@ section {
 }
 
 .routes {
-    height: 80vh;
+    max-height: 80vh;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -126,6 +126,7 @@ section {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 1em;
+    margin-bottom: 1em;
 }
 
 .big-dick {
@@ -133,5 +134,27 @@ section {
 }
 
 .meow {
-    margin-top: 0.25em;
+    margin-top: 0.5em;
+    margin-bottom: 0.1em;
+}
+
+.facility {
+    margin-top: 0.5em;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.breadcrump {
+    position: fixed;
+    top: 1vw;
+    left: 1vw;
+}
+
+a {
+    color: var(--main-color) !important;
+}
+
+a:hover {
+    color: #cd1515 !important;
 }

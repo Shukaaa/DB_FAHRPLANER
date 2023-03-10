@@ -30,6 +30,7 @@ if (isset($_SESSION["bahnhof_ziel"]) && isset($_SESSION["bahnhof_start"])) {
     <?php echo Components::head("Verbindung") ?>
 </head>
 <body>
+    <?php echo Components::breadcrump(false, "Verbindungsdetails") ?>
     <main class="center-hv">
         <?php
         if ($station_ziel != null && $station_start != null) {
